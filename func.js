@@ -8,11 +8,17 @@ toggleBtn.addEventListener('click', () => {
     // Save preference to local storage so it stays after refresh
     const isLight = body.classList.contains('light-theme');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    toggleBtn.textContent = isLight ? "🌙Dark" : "🌞Light";
 });
 
 // Check for saved theme on page load
-if (localStorage.getItem('theme') === 'light') {
-    body.classList.add('light-theme');
+const savedTheme = localStorage.getItem('theme');
+
+if (savedTheme === 'light') {
+  body.classList.add('light-theme');
+  toggleBtn.textContent = "🌙Dark";
+} else {
+  toggleBtn.textContent = "🌞Light";
 }
 
 // 2. Scroll Reveal Animation
@@ -33,4 +39,4 @@ const hiddenElements = document.querySelectorAll('.card, header');
 hiddenElements.forEach((el) => {
     el.classList.add('hidden'); // Start them hidden
     observer.observe(el);
-});
+}); 
